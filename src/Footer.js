@@ -1,7 +1,8 @@
 function Footer() {
   return (
-    <footer>
-      <p>&copy; 2026 Little Lemon. Todos los derechos reservados.</p>
+    <footer className="footer-container">
+      <p>&copy; 2026 Little Lemon Restaurant. Todos los derechos reservados.</p>
+      <p>Diseño responsivo optimizado para web y móvil.</p>
     </footer>
   );
 }

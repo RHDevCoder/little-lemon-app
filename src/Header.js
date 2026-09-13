@@ -3,11 +3,11 @@ import logo from './assets/Logo.svg';
 
 function Header() {
   return (
-    <header>
+    <header className="header-container">
       <img
         src={logo}
-        alt="Logotipo oficial de Little Lemon"
-        width="200"
+        alt="Little Lemon Restaurant Logo"
+        className="header-logo"
       />
     </header>
   );
