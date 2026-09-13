@@ -1,6 +1,6 @@
 import BookingForm from './BookingForm';
 
-function BookingPage() {
+function BookingPage({ availableTimes, dispatch }) {
   return (
     <div className="booking-page-container">
       <section className="booking-header">
@@ -9,7 +9,7 @@ function BookingPage() {
       </section>
 
       <div className="booking-form-wrapper">
-        <BookingForm />
+        <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
       </div>
     </div>
   );
