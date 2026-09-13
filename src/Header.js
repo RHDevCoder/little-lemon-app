@@ -1,9 +1,8 @@
-import React from 'react';
 import logo from './assets/Logo.svg';
 
 function Header() {
   return (
-    <header className="header-container">
+    <header className="header-wrapper">
       <img
         src={logo}
         alt="Little Lemon Restaurant Logo"
