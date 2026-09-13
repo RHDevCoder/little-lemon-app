@@ -1,14 +1,15 @@
-import { Link } from 'react-router-dom';
+import BookingForm from './BookingForm';
 
 function BookingPage() {
   return (
-    <div className="booking-wrapper">
-      <h1>Reserva de Mesa</h1>
-      <p>Organiza tu próxima comida con nosotros en Little Lemon.</p>
-      <div className="booking-card">
-        <h3>Formulario de Reserva</h3>
-        <p>El selector interactivo de mesas y turnos se integrará en el siguiente ejercicio.</p>
-        <Link to="/" className="button-primary">Volver al Inicio</Link>
+    <div className="booking-page-container">
+      <section className="booking-header">
+        <h1>Reserva tu Mesa</h1>
+        <p>Selecciona la fecha, hora y número de invitados para tu reserva en Little Lemon.</p>
+      </section>
+
+      <div className="booking-form-wrapper">
+        <BookingForm />
       </div>
     </div>
   );
