@@ -2,10 +2,13 @@ import { render, screen } from '@testing-library/react';
 import BookingForm from './BookingForm';
 import { initializeTimes, updateTimes } from './Main';
 
+const mockedNavigate = jest.fn();
+
 jest.mock('react-router-dom', () => ({
   Routes: ({ children }) => <div>{children}</div>,
   Route: ({ element }) => element,
   Link: ({ children, to }) => <a href={to}>{children}</a>,
+  useNavigate: () => mockedNavigate,
 }));
 
 test('Renderiza el texto estático de las etiquetas en BookingForm', () => {

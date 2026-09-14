@@ -411,3 +411,25 @@ footer {
   width: 100%;
   margin-top: 0.5rem;
 }
+
+.confirmation-card {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.confirmation-icon {
+  font-size: 3.5rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.confirmation-card h1 {
+  font-size: 2.25rem;
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+}
+
+.confirmation-card p {
+  color: #555;
+  margin-bottom: 1.5rem;
+}
