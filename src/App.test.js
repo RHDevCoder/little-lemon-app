@@ -14,25 +14,19 @@ test('Renderiza el texto estático de las etiquetas en BookingForm', () => {
 
   render(<BookingForm availableTimes={mockTimes} dispatch={mockDispatch} />);
 
-  const labelElement = screen.getByText('Elige una fecha');
-  expect(labelElement).toBeInTheDocument();
-
-  const submitButton = screen.getByDisplayValue('Hacer tu reserva');
-  expect(submitButton).toBeInTheDocument();
+  expect(screen.getByText('Elige una fecha')).toBeInTheDocument();
+  expect(screen.getByDisplayValue('Hacer tu reserva')).toBeInTheDocument();
 });
 
-test('initializeTimes retorna el arreglo esperado de horarios iniciales', () => {
-  const expectedTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
-  const result = initializeTimes();
-  expect(result).toEqual(expectedTimes);
-  expect(result.length).toBeGreaterThan(0);
+test('initializeTimes retorna un arreglo no vacío de horarios desde la API', () => {
+  const times = initializeTimes();
+  expect(Array.isArray(times)).toBe(true);
+  expect(times.length).toBeGreaterThan(0);
 });
 
-test('updateTimes retorna los horarios correspondientes según la acción', () => {
-  const currentState = ['17:00', '18:00'];
-  const action = { type: 'UPDATE_TIMES', payload: '2026-09-14' };
-  
-  const updatedState = updateTimes(currentState, action);
-  
-  expect(updatedState).toEqual(['17:00', '18:00', '19:00', '20:00', '21:00', '22:00']);
+test('updateTimes retorna horarios disponibles según la fecha seleccionada', () => {
+  const action = { type: 'UPDATE_TIMES', payload: '2026-09-15' };
+  const times = updateTimes([], action);
+  expect(Array.isArray(times)).toBe(true);
+  expect(times.length).toBeGreaterThan(0);
 });
