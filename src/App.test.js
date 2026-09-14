@@ -11,6 +11,13 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockedNavigate,
 }));
 
+const mockTimesFromAPI = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+
+beforeEach(() => {
+  global.fetchAPI = jest.fn(() => mockTimesFromAPI);
+  window.fetchAPI = global.fetchAPI;
+});
+
 test('Renderiza el texto estático de las etiquetas en BookingForm', () => {
   const mockTimes = ['17:00', '18:00', '19:00'];
   const mockDispatch = jest.fn();
@@ -21,15 +28,15 @@ test('Renderiza el texto estático de las etiquetas en BookingForm', () => {
   expect(screen.getByDisplayValue('Hacer tu reserva')).toBeInTheDocument();
 });
 
-test('initializeTimes retorna un arreglo no vacío de horarios desde la API', () => {
+test('initializeTimes retorna un arreglo no vacío de horarios desde fetchAPI', () => {
   const times = initializeTimes();
   expect(Array.isArray(times)).toBe(true);
   expect(times.length).toBeGreaterThan(0);
 });
 
-test('updateTimes retorna horarios disponibles según la fecha seleccionada', () => {
+test('updateTimes retorna los horarios correspondientes para una fecha seleccionada', () => {
   const action = { type: 'UPDATE_TIMES', payload: '2026-09-15' };
-  const times = updateTimes([], action);
-  expect(Array.isArray(times)).toBe(true);
-  expect(times.length).toBeGreaterThan(0);
+  const updatedTimes = updateTimes([], action);
+  expect(Array.isArray(updatedTimes)).toBe(true);
+  expect(updatedTimes.length).toBeGreaterThan(0);
 });

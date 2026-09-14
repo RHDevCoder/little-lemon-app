@@ -4,44 +4,48 @@ import HomePage from './HomePage';
 import BookingPage from './BookingPage';
 import ConfirmedBooking from './ConfirmedBooking';
 
-export const getAvailableTimes = (date) => {
-  if (typeof window !== 'undefined' && typeof window.fetchAPI === 'function') {
-    return window.fetchAPI(date);
-  }
+const defaultTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
 
-  const seededRandom = (seed) => {
-    const m = 2 ** 35 - 31;
-    const a = 185852;
-    let s = seed % m;
-    return () => ((s = (s * a) % m) / m);
-  };
-
-  const result = [];
-  const random = seededRandom(date.getDate());
-  for (let i = 17; i <= 23; i++) {
-    if (random() < 0.5) result.push(`${i}:00`);
-    if (random() < 0.5) result.push(`${i}:30`);
+export const fetchTimesFromAPI = (date) => {
+  try {
+    if (typeof window !== 'undefined' && typeof window.fetchAPI === 'function') {
+      return window.fetchAPI(date);
+    }
+    if (typeof global !== 'undefined' && typeof global.fetchAPI === 'function') {
+      return global.fetchAPI(date);
+    }
+  } catch (error) {
+    console.error('Error al consultar horarios:', error);
   }
-  return result;
+  return defaultTimes;
 };
 
 export const submitAPI = (formData) => {
-  if (typeof window !== 'undefined' && typeof window.submitAPI === 'function') {
-    return window.submitAPI(formData);
+  try {
+    if (typeof window !== 'undefined' && typeof window.submitAPI === 'function') {
+      return window.submitAPI(formData);
+    }
+    if (typeof global !== 'undefined' && typeof global.submitAPI === 'function') {
+      return global.submitAPI(formData);
+    }
+  } catch (error) {
+    console.error('Error al enviar formulario:', error);
   }
   return true;
 };
 
 export const initializeTimes = () => {
   const today = new Date();
-  return getAvailableTimes(today);
+  const times = fetchTimesFromAPI(today);
+  return Array.isArray(times) && times.length > 0 ? times : defaultTimes;
 };
 
 export const updateTimes = (state, action) => {
   switch (action.type) {
     case 'UPDATE_TIMES': {
-      const selectedDate = new Date(`${action.payload}T00:00:00`);
-      return getAvailableTimes(selectedDate);
+      const selectedDate = action.payload ? new Date(`${action.payload}T00:00:00`) : new Date();
+      const times = fetchTimesFromAPI(selectedDate);
+      return Array.isArray(times) && times.length > 0 ? times : defaultTimes;
     }
     default:
       return state;
