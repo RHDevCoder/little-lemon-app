@@ -433,3 +433,11 @@ footer {
   color: #555;
   margin-bottom: 1.5rem;
 }
+.button-primary:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  border: 1px solid #999999;
+  transform: none;
+  box-shadow: none;
+}

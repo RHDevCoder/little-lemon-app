@@ -1,20 +1,35 @@
 import { useState } from 'react';
 
 function BookingForm({ availableTimes, dispatch, submitForm }) {
+  const today = new Date().toISOString().split('T')[0];
+
   const [date, setDate] = useState('');
-  const [time, setTime] = useState('17:00');
+  const [time, setTime] = useState(availableTimes && availableTimes[0] ? availableTimes[0] : '17:00');
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState('Cumpleaños');
 
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
     setDate(selectedDate);
-    dispatch({ type: 'UPDATE_TIMES', payload: selectedDate });
+    if (dispatch) {
+      dispatch({ type: 'UPDATE_TIMES', payload: selectedDate });
+    }
+  };
+
+  const isFormValid = () => {
+    return (
+      date !== '' &&
+      date >= today &&
+      Number(guests) >= 1 &&
+      Number(guests) <= 10 &&
+      time !== '' &&
+      occasion !== ''
+    );
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (submitForm) {
+    if (isFormValid() && submitForm) {
       submitForm({ date, time, guests, occasion });
     }
   };
@@ -26,6 +41,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         type="date"
         id="res-date"
         value={date}
+        min={today}
         onChange={handleDateChange}
         required
       />
@@ -35,8 +51,9 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         id="res-time"
         value={time}
         onChange={(e) => setTime(e.target.value)}
+        required
       >
-        {availableTimes.map((availableTime) => (
+        {availableTimes && availableTimes.map((availableTime) => (
           <option key={availableTime} value={availableTime}>
             {availableTime}
           </option>
@@ -60,6 +77,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         id="occasion"
         value={occasion}
         onChange={(e) => setOccasion(e.target.value)}
+        required
       >
         <option value="Cumpleaños">Cumpleaños</option>
         <option value="Aniversario">Aniversario</option>
@@ -69,6 +87,8 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         type="submit"
         value="Hacer tu reserva"
         className="button-primary submit-btn"
+        disabled={!isFormValid()}
+        aria-label="Hacer tu reserva"
       />
     </form>
   );
