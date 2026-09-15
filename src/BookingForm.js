@@ -35,7 +35,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
   };
 
   return (
-    <form className="booking-form" onSubmit={handleSubmit}>
+    <form className="booking-form" onSubmit={handleSubmit} noValidate={false}>
       <label htmlFor="res-date">Elige una fecha</label>
       <input
         type="date"
@@ -44,6 +44,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         min={today}
         onChange={handleDateChange}
         required
+        aria-required="true"
       />
 
       <label htmlFor="res-time">Elige una hora</label>
@@ -52,6 +53,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         value={time}
         onChange={(e) => setTime(e.target.value)}
         required
+        aria-required="true"
       >
         {availableTimes && availableTimes.map((availableTime) => (
           <option key={availableTime} value={availableTime}>
@@ -70,6 +72,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         value={guests}
         onChange={(e) => setGuests(e.target.value)}
         required
+        aria-required="true"
       />
 
       <label htmlFor="occasion">Ocasión</label>
@@ -78,6 +81,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         value={occasion}
         onChange={(e) => setOccasion(e.target.value)}
         required
+        aria-required="true"
       >
         <option value="Cumpleaños">Cumpleaños</option>
         <option value="Aniversario">Aniversario</option>
@@ -88,7 +92,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         value="Hacer tu reserva"
         className="button-primary submit-btn"
         disabled={!isFormValid()}
-        aria-label="Hacer tu reserva"
+        aria-label="On Click"
       />
     </form>
   );
