@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Little Lemon Restaurant - Aplicación Web de Reservas
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicación web desarrollada en React para el restaurante mediterráneo Little Lemon como proyecto final (Capstone Project) del programa de certificación **Meta Front-End Developer** en Coursera.
 
-## Available Scripts
+**Desarrollador:** Ricardo Herrera ([@RHDevCoder](https://github.com/RHDevCoder))  
+**Repositorio:** [little-lemon-app](https://github.com/RHDevCoder/little-lemon-app)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Descripción del Proyecto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+El objetivo principal de esta aplicación es proporcionar un flujo completo, accesible y responsivo para la reserva de mesas en línea en Little Lemon. La aplicación implementa gestión de estado global/local, validación dual en formularios, navegación de múltiples páginas y cobertura de pruebas unitarias automatizadas.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Características Principales
 
-### `npm test`
+* **Diseño Responsivo:** Interfaz adaptable para dispositivos móviles, tablets y pantallas de escritorio.
+* **Sistema Dinámico de Reservas:** Consulta de horarios disponibles en tiempo real mediante `fetchAPI` y gestión de estado con `useReducer`.
+* **Validación en Cliente:** Validación estricta con atributos HTML5 nativos (`required`, `min`, `max`) y validación programática en React que controla la activación del botón de envío.
+* **Accesibilidad (a11y):** Estructura basada en etiquetas semánticas (`<header>`, `<main>`, `<section>`, `<article>`, `<footer>`), vinculación de etiquetas (`label htmlFor` -> `input id`) y soporte para lectores de pantalla mediante atributos ARIA (puntuación de 100/100 en auditoría Google Lighthouse).
+* **Pruebas Automatizadas:** Suite completa de pruebas unitarias con Jest y React Testing Library que evalúa renderizado, funciones reductoras, validación y eventos de envío.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tecnologías Utilizadas
 
-### `npm run build`
+* **React 18**
+* **React Router DOM v6** (enrutamiento de navegación)
+* **Jest & React Testing Library** (pruebas unitarias)
+* **CSS3** (Variables CSS, Flexbox y CSS Grid)
+* **HTML5 Semántico**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Instalación y Ejecución Local
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Para ejecutar este proyecto en tu entorno local, sigue estos pasos:
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 1. Clonar el repositorio
+```bash
+git clone [https://github.com/RHDevCoder/little-lemon-app.git](https://github.com/RHDevCoder/little-lemon-app.git)
